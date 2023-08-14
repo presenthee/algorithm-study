@@ -1,28 +1,20 @@
 #include <iostream>
-#define MAX 8
 
 using namespace std;
 
-int N, M;
-int arr[MAX];
-
-void dfs(int cnt) {
-  if (cnt == M) {
-    for (int i = 0; i < M; i++) {
-      cout << arr[i] << " ";
-    }
-    cout << "\n";
-    return;
-  }
-
-  for (int i = 0; i < N; i++) {
-    arr[cnt] = i + 1;
-    dfs(cnt + 1);
-  }
-}
-
 int main() {
+  int N, M, sequence[7];
   cin >> N >> M;
-  fill_n(arr, MAX, 0);
-  dfs(0);
+
+  int p = 1;
+  for (int i = 0; i < M; i++) p *= N;
+  for (int i = 0; i < p; i++) {
+    for (int j = 0, cur = i; j < M; j++) {
+      sequence[j] = cur % N + 1;
+      cur /= N;
+    }
+    for (int j = M - 1; j >= 0; j--) cout << sequence[j] << ' ';
+    cout << '\n';
+  }
+  return 0;
 }

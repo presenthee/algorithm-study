@@ -1,5 +1,6 @@
+from itertools import permutations
 import math
-cans = set()
+cans = list()
 
 def dfs(curr, numbers):
     global cans
@@ -25,7 +26,11 @@ def solution(numbers):
     answer = 0
     numbers = list(numbers)
         
-    dfs("", numbers)
+    # dfs("", numbers)
+    for i in range(1, len(numbers) + 1):
+        cans += permutations(numbers, i)
+    
+    cans = list(set([ int(''.join(a)) for a in cans ]))
     
     n = max(cans)
     end = int(math.sqrt(n))

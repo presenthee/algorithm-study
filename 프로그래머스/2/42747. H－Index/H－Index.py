@@ -1,10 +1,9 @@
 def solution(citations):
     answer = 0
-    citations.sort(reverse=True)
     l = len(citations)
-    for i in range(l):
-        if (i + 1 >= citations[i]):
-            answer = max(i, citations[i])
-            break
+    while l > 0:
+        if (sum([ x >= l for x in citations]) >= l):
+            return  l
+        l -= 1
     
-    return l if answer == 0 and citations[0] != 0 else answer
+    return l
